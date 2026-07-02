@@ -238,7 +238,7 @@
                 </div>
 
                 {{-- DESKTOP --}}
-                <a href="agenda" class="text-decoration-none fw-bold lihat-lengkap d-none d-md-block">
+                <a href="front-agenda" class="text-decoration-none fw-bold lihat-lengkap d-none d-md-block">
                     Lihat Selengkapnya →
                 </a>
             </div>
@@ -246,7 +246,7 @@
             <div class="row g-3">
                 {{-- MOBILE --}}
                 <div class="ms-1 d-block d-md-none">
-                    <a href="agenda" class="text-decoration-none fw-bold lihat-lengkap">
+                    <a href="front-agenda" class="text-decoration-none fw-bold lihat-lengkap">
                         Lihat Selengkapnya →
                     </a>
                 </div>
@@ -255,7 +255,7 @@
                 <div class="col-md-6">
                     @php $first = $relatedAgenda->first(); @endphp
 
-                    <a href="{{ route('agenda.show', $first->id) }}" class="text-decoration-none">
+                    <a href="{{ route('front-agenda.show', $first->id) }}" class="text-decoration-none">
                         <div class="card-agenda" style="height:417px">
 
                             <img src="{{ url('admin/assets/img/agenda') }}/{{ $first->foto }}">
@@ -283,7 +283,7 @@
                         @foreach ($relatedAgenda->skip(1)->take(4) as $p)
                             <div class="col-6">
 
-                                <a href="{{ route('agenda.show', $p->id) }}" class="text-decoration-none">
+                                <a href="{{ route('front-agenda.show', $p->id) }}" class="text-decoration-none">
 
                                     <div class="card-agenda" style="height:200px;">
 
