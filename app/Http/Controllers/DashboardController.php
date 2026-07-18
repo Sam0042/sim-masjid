@@ -93,12 +93,47 @@ class DashboardController extends Controller
             $dataHarian[] = $running; // saldo berjalan harian
         }
 
+        // Logika card pemasukan dan pengeluaran bulanan
+        $pemasukanBulanIni = DB::table('kas_operasional')
+        ->whereYear('tanggal', $tahunAktif)
+        ->whereMonth('tanggal', $bulanAktif)
+        ->where('jenis', 'Penerimaan') // sesuaikan huruf kapital database Anda kemarin
+        ->sum('nominal');
+        $pengeluaranBulanIni = DB::table('kas_operasional')
+        ->whereYear('tanggal', $tahunAktif)
+        ->whereMonth('tanggal', $bulanAktif)
+        ->where('jenis', 'Pengeluaran') // sesuaikan huruf kapital database Anda kemarin
+        ->sum('nominal');
+
+        // 1. Ambil nilai dasar dari master saldo_awals
+        $nominalSaldoAwal = DB::table('saldo_awals')->value('nominal') ?? 0;
+
+        // 2. Hitung total uang masuk (penerimaan) & uang keluar (pengeluaran) dari awal sistem dibuat sampai sekarang
+        // Menggunakan LOWER() untuk mengantisipasi jika di database ada perbedaan huruf besar/kecil (Penerimaan / penerimaan)
+        $totalSemuaTransaksi = DB::table('kas_operasional')
+            ->selectRaw("
+                SUM(
+                    CASE 
+                        WHEN LOWER(jenis) LIKE '%penerimaan%' THEN nominal
+                        WHEN LOWER(jenis) LIKE '%pengeluaran%' THEN -nominal
+                        ELSE 0
+                    END
+                ) as total
+            ")
+            ->value('total') ?? 0;
+
+        // 3. Gabungkan Saldo Awal master dengan mutasi seluruh waktu
+        $saldoTerakhir = $nominalSaldoAwal + $totalSemuaTransaksi;
+
         return view('admin.dashboard', compact(
             'program',
             'ketKas',
             'kas',
             'galeri',
             'khotibMuazin',
+            'saldoTerakhir',
+            'pemasukanBulanIni',
+            'pengeluaranBulanIni',
 
             // bar chart
             'labels',

@@ -10,33 +10,62 @@
 
             {{-- UBUDIYAH --}}
             @if (Auth::check() && Auth::user()->role === 'ubudiyah')
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Data Khotib dan Muazin : {{ $khotibMuazin }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('khotibMuazin.index') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <div class="row mb-3">
+                    <!-- === BARIS 2: DATA OPERASIONAL & KEGIATAN === -->
+                    <div class="row mb-4">
+                        <!-- Card 4: Agenda Masjid -->
+                        <div class="col-md-4 col-sm-6 col-12 mb-3">
+                            <div class="card border-0 shadow-sm text-white"
+                                style="border-radius: 12px; background: linear-gradient(135deg, #2e3033, #111111);">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-uppercase mb-2"
+                                                style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Agenda Masjid
+                                            </h6>
+                                            <h3 class="font-weight-bold mb-0">{{ $program }} Kegiatan</h3>
+                                        </div>
+                                        <i class="fas fa-calendar-alt fa-2x" style="opacity: 0.3;"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Data Agenda : {{ $program }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('agenda.index') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+                        <!-- Card 5: Jadwal Petugas -->
+                        <div class="col-md-4 col-sm-6 col-12 mb-3">
+                            <div class="card border-0 shadow-sm text-white"
+                                style="border-radius: 12px; background: linear-gradient(135deg, #654ea3, #eaafc8);">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-uppercase mb-2"
+                                                style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Jadwal Khotib
+                                                &
+                                                Muazin</h6>
+                                            <h3 class="font-weight-bold mb-0">{{ $khotibMuazin }} Data</h3>
+                                        </div>
+                                        <i class="fas fa-user-clock fa-2x" style="opacity: 0.3;"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-info text-white mb-4">
-                        <div class="card-body">Data Galeri : {{ $galeri }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('galeri.index') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+                        <!-- Card 6: Galeri Kegiatan -->
+                        <div class="col-md-4 col-sm-6 col-12 mb-3">
+                            <div class="card border-0 shadow-sm text-white"
+                                style="border-radius: 12px; background: linear-gradient(135deg, #fd746c, #ff9068);">
+                                <div class="card-body p-4">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="text-uppercase mb-2"
+                                                style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Galeri
+                                                Dokumentasi</h6>
+                                            <h3 class="font-weight-bold mb-0">{{ $galeri }} Dokumentasi</h3>
+                                        </div>
+                                        <i class="fas fa-images fa-2x" style="opacity: 0.3;"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,46 +73,123 @@
 
             {{-- KETUA --}}
             @if (Auth::check() && Auth::user()->role === 'ketua')
-                {{-- <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Data Khotib Muazin : {{ $khotibMuazin }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('ketua-khotibMuazin') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <!-- === BARIS 1: RINGKASAN KEUANGAN MASJID === -->
+                <div class="row mb-3">
+                    <!-- Card 1: Total Saldo Terakhir -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #00b4db, #0083b0);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Total Saldo
+                                            Terakhir
+                                        </h6>
+                                        <h3 class="font-weight-bold mb-0">Rp
+                                            {{ number_format($saldoTerakhir, 0, ',', '.') }}</h3>
+                                    </div>
+                                    <i class="fas fa-wallet fa-2x" style="opacity: 0.4;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Pemasukan Bulan Ini -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #11998e, #38ef7d);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Pemasukan Bulan
+                                            Ini</h6>
+                                        <h3 class="font-weight-bold mb-0">Rp
+                                            {{ number_format($pemasukanBulanIni, 0, ',', '.') }}</h3>
+                                    </div>
+                                    <i class="fas fa-arrow-down fa-2x" style="opacity: 0.4;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Pengeluaran Bulan Ini -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #ff9966, #ff5e62);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Pengeluaran Bulan
+                                            Ini</h6>
+                                        <h3 class="font-weight-bold mb-0">Rp
+                                            {{ number_format($pengeluaranBulanIni, 0, ',', '.') }}</h3>
+                                    </div>
+                                    <i class="fas fa-arrow-up fa-2x" style="opacity: 0.4;"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Data Agenda : {{ $program }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('ketua-agenda') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+
+                <!-- === BARIS 2: DATA OPERASIONAL & KEGIATAN === -->
+                <div class="row mb-4">
+                    <!-- Card 4: Agenda Masjid -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #2e3033, #111111);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Agenda Masjid
+                                        </h6>
+                                        <h3 class="font-weight-bold mb-0">{{ $program }} Kegiatan</h3>
+                                    </div>
+                                    <i class="fas fa-calendar-alt fa-2x" style="opacity: 0.3;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Jadwal Petugas -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #654ea3, #eaafc8);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Jadwal Khotib &
+                                            Muazin</h6>
+                                        <h3 class="font-weight-bold mb-0">{{ $khotibMuazin }} Data</h3>
+                                    </div>
+                                    <i class="fas fa-user-clock fa-2x" style="opacity: 0.3;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Galeri Kegiatan -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #fd746c, #ff9068);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Galeri
+                                            Dokumentasi</h6>
+                                        <h3 class="font-weight-bold mb-0">{{ $galeri }} Dokumentasi</h3>
+                                    </div>
+                                    <i class="fas fa-images fa-2x" style="opacity: 0.3;"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Data Galeri : {{ $galeri }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('ketua-galeris') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Data Kas Operasional : {{ $kas }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('ketua-kasOperasional') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div> --}}
 
                 <form method="GET" class="row g-3 align-items-end mb-3">
 
@@ -212,24 +318,63 @@
 
             {{-- BENDAHARA --}}
             @if (Auth::check() && Auth::user()->role === 'bendahara')
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Data Keterangan Kas : {{ $ketKas }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('keterangan_kas.index') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <!-- Card 1: Saldo Terakhir -->
+                <div class="row mb-4">
+                    <!-- Card 1: Total Saldo Terakhir (Akumulasi Semua Waktu) -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #00b4db, #0083b0);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Total Saldo
+                                            Terakhir
+                                        </h6>
+                                        <h3 class="font-weight-bold mb-0">Rp
+                                            {{ number_format($saldoTerakhir, 0, ',', '.') }}</h3>
+                                    </div>
+                                    <i class="fas fa-wallet fa-2x" style="opacity: 0.4;"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Data Final : {{ $kas }}</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="{{ route('kas_operasional.index') }}">
-                                View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <!-- Card 2: Pemasukan Bulan Ini -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #11998e, #38ef7d);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Pemasukan Bulan
+                                            Ini</h6>
+                                        <h3 class="font-weight-bold mb-0">Rp
+                                            {{ number_format($pemasukanBulanIni, 0, ',', '.') }}</h3>
+                                    </div>
+                                    <i class="fas fa-arrow-down fa-2x" style="opacity: 0.4;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Pengeluaran Bulan Ini -->
+                    <div class="col-md-4 col-sm-6 col-12 mb-3">
+                        <div class="card border-0 shadow-sm text-white"
+                            style="border-radius: 12px; background: linear-gradient(135deg, #ff9966, #ff5e62);">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="text-uppercase mb-2"
+                                            style="font-size: 0.75rem; letter-spacing: 1px; opacity: 0.8;">Pengeluaran
+                                            Bulan Ini</h6>
+                                        <h3 class="font-weight-bold mb-0">Rp
+                                            {{ number_format($pengeluaranBulanIni, 0, ',', '.') }}</h3>
+                                    </div>
+                                    <i class="fas fa-arrow-up fa-2x" style="opacity: 0.4;"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
